@@ -8,6 +8,18 @@ plugins:
 provider:
   name: aws
   runtime: nodejs8.10
+  environment:
+    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 functions:
   getLatest:
@@ -15,7 +27,11 @@ functions:
     events:
       - http:
           method: get
-          path: getLatest
+          path: getLatest/{deviceId}
+          request:
+             parameters:
+               paths:
+                 deviceId: true
           cors: true
 
   getSession:
@@ -29,3 +45,30 @@ functions:
                paths:
                  id: true
           cors: true
+
+  storeLatest:
+    handler: handler.storeLatest
+    events:
+      - http:
+          method: post
+          path: storeLatest
+          cors: true
+
+resources:
+  Resources:
+    CurrentSensorValuesDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: deviceId
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: deviceId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
