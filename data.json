@@ -1,0 +1,6 @@
+{
+  "resource": "/getSession",
+  "path": "/getSession/1234567890",
+  "httpMethod": "GET",
+  "pathParameters" : "1234567890"
+}
