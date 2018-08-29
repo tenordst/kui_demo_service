@@ -15,6 +15,9 @@ bin/
 gen/
 .cache
 
+# Serverless files
+X.serverless/
+
 # Gradle files
 .gradle/
 build/

@@ -128,7 +128,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/kui-demo-service/dev/1535372513966-2018-08-27T12:21:53.966Z/kui-demo-service.zip"
+          "S3Key": "serverless/kui-demo-service/dev/1535537660126-2018-08-29T10:14:20.126Z/kui-demo-service.zip"
         },
         "FunctionName": "kui-demo-service-dev-getLatest",
         "Handler": "handler.getLatest",
@@ -152,14 +152,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "GetLatestLambdaVersiondWsQaFsHMCFbZnd7ksrY5KJoqstjhoZDOB5L6G2NGk": {
+    "GetLatestLambdaVersionk5bL7Yw67mfPc0bbyZDs0Fi2830Eriy5pGUFPGrOGY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetLatestLambdaFunction"
         },
-        "CodeSha256": "XgjiBaO3gMg2EDFlzqbVK4v74kdWfdv0Tq5JiLQEoa8="
+        "CodeSha256": "MbaVWQwFeNyixgR2B5jB3O4epMEH5igQ+W3jTI3bid4="
       }
     },
     "GetSessionLambdaFunction": {
@@ -169,7 +169,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/kui-demo-service/dev/1535372513966-2018-08-27T12:21:53.966Z/kui-demo-service.zip"
+          "S3Key": "serverless/kui-demo-service/dev/1535537660126-2018-08-29T10:14:20.126Z/kui-demo-service.zip"
         },
         "FunctionName": "kui-demo-service-dev-getSession",
         "Handler": "handler.getSession",
@@ -193,14 +193,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "GetSessionLambdaVersionfootbJCdKphiCG9R07T44AAsElZnewAHQSLZAyxyb8": {
+    "GetSessionLambdaVersionI0vsjK3FluG2uYxFvGcqzlsmfFzo69UxCTgUZxp4KQQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetSessionLambdaFunction"
         },
-        "CodeSha256": "XgjiBaO3gMg2EDFlzqbVK4v74kdWfdv0Tq5JiLQEoa8="
+        "CodeSha256": "MbaVWQwFeNyixgR2B5jB3O4epMEH5igQ+W3jTI3bid4="
       }
     },
     "StoreLatestLambdaFunction": {
@@ -210,7 +210,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/kui-demo-service/dev/1535372513966-2018-08-27T12:21:53.966Z/kui-demo-service.zip"
+          "S3Key": "serverless/kui-demo-service/dev/1535537660126-2018-08-29T10:14:20.126Z/kui-demo-service.zip"
         },
         "FunctionName": "kui-demo-service-dev-storeLatest",
         "Handler": "handler.storeLatest",
@@ -234,14 +234,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "StoreLatestLambdaVersionK8D92nYnguk8nqom8AiyI1uCx7F8CW5MGhkjZyZEk": {
+    "StoreLatestLambdaVersionQlTfOdmUm9tuanQPgZ24tRRTB5FOfRhNYHgM5S9g": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "StoreLatestLambdaFunction"
         },
-        "CodeSha256": "XgjiBaO3gMg2EDFlzqbVK4v74kdWfdv0Tq5JiLQEoa8="
+        "CodeSha256": "MbaVWQwFeNyixgR2B5jB3O4epMEH5igQ+W3jTI3bid4="
       }
     },
     "ApiGatewayRestApi": {
@@ -598,7 +598,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1535372513998": {
+    "ApiGatewayDeployment1535537660155": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -786,19 +786,19 @@
     "GetLatestLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetLatestLambdaVersiondWsQaFsHMCFbZnd7ksrY5KJoqstjhoZDOB5L6G2NGk"
+        "Ref": "GetLatestLambdaVersionk5bL7Yw67mfPc0bbyZDs0Fi2830Eriy5pGUFPGrOGY"
       }
     },
     "GetSessionLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetSessionLambdaVersionfootbJCdKphiCG9R07T44AAsElZnewAHQSLZAyxyb8"
+        "Ref": "GetSessionLambdaVersionI0vsjK3FluG2uYxFvGcqzlsmfFzo69UxCTgUZxp4KQQ"
       }
     },
     "StoreLatestLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "StoreLatestLambdaVersionK8D92nYnguk8nqom8AiyI1uCx7F8CW5MGhkjZyZEk"
+        "Ref": "StoreLatestLambdaVersionQlTfOdmUm9tuanQPgZ24tRRTB5FOfRhNYHgM5S9g"
       }
     },
     "ServiceEndpoint": {

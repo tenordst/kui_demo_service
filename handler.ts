@@ -7,30 +7,24 @@ import { Session } from "./session";
 
 const dynamoDb = new DynamoDB.DocumentClient();
 
-const defaultDeviceId = "12345";
-
 // Getting the latest value
 export const getLatest: Handler = (event: APIGatewayEvent, context: Context, cb: Callback) => {
   console.log(`Incoming request for ${event.httpMethod}, path ${event.path}, function ${context.functionName}`);
 
-  let deviceId = defaultDeviceId;
+  let deviceId: string;
 
   if (event.pathParameters != undefined) {
     deviceId = event.pathParameters.deviceId;
+    console.log(`Fetching latest value for ${deviceId}`);
+    getSensorValue(deviceId, cb);
   } else {
     console.log("Missing device id");
+    cb(new Error('Cannot fetch latest sensor value, missing device ID'));
   }
-
-  console.log(`Fetching latest value for ${deviceId}`);
-  getSensorValue(deviceId, cb);
 }
 
 function getSensorValue(deviceId: string, cb: Callback): void {
   let sensor: Sensor = new Sensor(77, 89, 128);
-
-  if (deviceId == defaultDeviceId) {
-      console.log("Using default values for sensor data");
-  }
 
   const params = {
       TableName: process.env.DYNAMODB_TABLE,
@@ -44,17 +38,20 @@ function getSensorValue(deviceId: string, cb: Callback): void {
       // handle potential errors
       if (error) {
           console.error(error);
+          cb(new Error('Cannot fetch latest sensor value, error fetching data from DynamoDB' + error));
       } else {
           if (result.Item != undefined) {
             sensor = new Sensor(result.Item.temperature, result.Item.humidity, result.Item.co2);
+            const response = {
+              statusCode: 200,
+              body: JSON.stringify(sensor),
+            };
+
+            cb(null, response);
+          } else {
+              cb(new Error('Cannot fetch latest sensor value, unknown device ID, error' + error));
           }
       }
-      const response = {
-          statusCode: 200,
-          body: JSON.stringify(sensor),
-      };
-
-      cb(null, response);
   });
 }
 
